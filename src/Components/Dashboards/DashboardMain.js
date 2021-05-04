@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Container, Divider } from 'semantic-ui-react';
+
+import './DashboardMain.css';
 
 const DashboardMain = () => {
     return (
-        <div>
-            <p>Dashboard</p>
-        </div>
+        <Container className="dashboardMain-container">
+            <Divider horizontal>Dashboard</Divider>
+        </Container>
     )
 };
 
