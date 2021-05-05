@@ -8,21 +8,21 @@ const MenuBar = () => {
     <Container className="menu-container">
         <Menu className="menu-item-container">
             <Menu.Item
-                name='editorials'
+                name='inventory'
             >
-                <p className="menu-item">Editorials</p>
+                <p className="menu-item">Inventory</p>
             </Menu.Item>
 
             <Menu.Item
-                name='reviews'
+                name='sales'
             >
-                 <p className="menu-item">Reviews</p>
+                 <p className="menu-item">Sales</p>
             </Menu.Item>
 
             <Menu.Item
-                name='upcomingEvents'
+                name='suppliers'
             >
-                <p className="menu-item">Upcoming Events</p>
+                <p className="menu-item">Suppliers</p>
             </Menu.Item>
         </Menu>
     </Container>);

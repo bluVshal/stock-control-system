@@ -11,17 +11,17 @@ const QuickLinks = () =>{
                     <List.Item
                         as='a'
                         icon="hand point right"
-                        content="Editorials"
+                        content="Inventory"
                     />
                     <List.Item
                         as='a'
                         icon="hand point right"
-                        content="Reviews"
+                        content="Sales"
                     />
                     <List.Item
                         as='a'
                         icon="hand point right"
-                        content="Upcoming Events"
+                        content="Suppliers"
                     />
                 </List>
             </Container>
