@@ -43,15 +43,11 @@ const DashboardMain = () => {
                 maxValue={100}
                 segments={10}
             />
-            <ReactSpeedometer
-                className="stockSpeedometer"
-                currentValueText="Stock Remaining"
-                value={10}
-                minValue={0}
-                maxValue={100}
-                segments={10}
+
+            <Line
+              data={data}
+              options={options}
             />
-            <Line data={data} options={options} />
 
         </Container>
     )
