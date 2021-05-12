@@ -8,6 +8,13 @@ const MenuBar = () => {
     return (
     <Container className="menu-container">
         <Menu className="menu-item-container">
+        <Link to="/">
+                <Menu.Item
+                    name='home'
+                >
+                    <p className="menu-item">Main</p>
+                </Menu.Item>
+            </Link>
             <Link to="/inventory">
                 <Menu.Item
                     name='inventory'
