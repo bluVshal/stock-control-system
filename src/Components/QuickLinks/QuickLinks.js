@@ -22,11 +22,12 @@ const QuickLinks = () =>{
                                 content="Sales"
                             />
                         </Link>
-                        <List.Item
-                            as='a'
-                            icon="hand point right"
-                            content="Suppliers"
-                        />
+                        <Link to="/suppliers">
+                            <List.Item
+                                icon="hand point right"
+                                content="Suppliers"
+                            />
+                        </Link>
                     </List>
             </Container>
     )
