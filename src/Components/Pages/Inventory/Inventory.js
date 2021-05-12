@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container, Divider} from 'semantic-ui-react';
 
-class Inventory {
+class Inventory extends React.Component{
     render(){
         return(
-            <div><p>Inventory</p></div>
+            <Container>
+                <Divider horizontal>Inventory</Divider>
+            </Container>
         );
     }
 }
