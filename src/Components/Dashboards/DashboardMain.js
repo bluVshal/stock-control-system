@@ -43,6 +43,8 @@ const DashboardMain = () => {
             <Line
               data={data}
               options={options}
+              width={75}
+              height={40}
             />
 
         </Container>

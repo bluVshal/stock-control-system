@@ -3,7 +3,7 @@ import React from 'react';
 const Interface = () => {
     return (
         <div>
-            <p>Interface</p>
+            <p style={{ alignContent:'center'}}>Interface</p>
         </div>
     );
 }
