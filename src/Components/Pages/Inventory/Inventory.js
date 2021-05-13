@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Divider, Table} from 'semantic-ui-react';
+import { Container, Divider, Header, Image, Table} from 'semantic-ui-react';
 
 import './Inventory.css';
 
@@ -27,9 +27,40 @@ class Inventory extends React.Component{
                             <Table.HeaderCell>Price</Table.HeaderCell>
                             <Table.HeaderCell>Description</Table.HeaderCell>
                             <Table.HeaderCell>Category</Table.HeaderCell>
-                            <Table.HeaderCell>Image</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
+
+                    <Table.Body>
+                    {this.state.dataDisplay.map(datDis => (
+                        <Table.Row key={datDis.id}>
+                                <Table.Cell>
+                                    {datDis.id}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <Header as='h4' image>
+                                        <Image
+                                            className="product-image"
+                                            src={datDis.image}
+                                        />
+                                        <Header.Content>
+                                            {datDis.title}
+                                        </Header.Content>
+                                    </Header>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    {datDis.price}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    {datDis.description}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    {datDis.category}
+                                </Table.Cell>
+                        </Table.Row>
+                    ))}
+
+                    </Table.Body>
+
                 </Table>
             </Container>
         );
