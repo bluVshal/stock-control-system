@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Divider, Header, Image, Table} from 'semantic-ui-react';
 
 import './Inventory.css';
+import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
 
 class Inventory extends React.Component{
     state={
@@ -19,6 +20,7 @@ class Inventory extends React.Component{
         return(
             <Container className="sales-container">
                 <Divider horizontal>Inventory</Divider>
+                <SearchBar/>
                 <Table basic='very' celled collapsing>
                     <Table.Header>
                         <Table.Row>
