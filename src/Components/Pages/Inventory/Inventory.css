@@ -1,0 +1,8 @@
+.sales-container{
+    position:relative;
+    display: fluid;
+    margin-top: 10vh;
+    left: 5vh;
+    font-size: 16px;
+    text-align: center;
+}
