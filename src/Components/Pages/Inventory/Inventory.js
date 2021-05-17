@@ -9,11 +9,16 @@ class Inventory extends React.Component{
         dataDisplay: []
     };
 
+
     async componentDidMount(){
         await fetch('https://fakestoreapi.com/products')
         .then(res=>res.json())
         .then(json=>this.setState({ dataDisplay: json }))
         .catch((err) => console.error(err)) ;
+    }
+
+    componentWillUnmount() {
+        this.setState({ dataDisplay: []}); //cleaning up all fetch data
     }
 
     render(){
