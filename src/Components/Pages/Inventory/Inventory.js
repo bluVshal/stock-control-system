@@ -7,14 +7,11 @@ import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
 class Inventory extends React.Component{
     state={
         dataDisplay: [],
-<<<<<<< HEAD
-        loading: false
-=======
+        loading: false,
         searchTerm: "",
         searchLoading: false,
         searchResults: [],
         products: []
->>>>>>> 0a9656ccbf49422b44a967d4ec10ea75dd2e8ce1
     };
 
 
