@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
                         size="mini"
                         icon="search" 
                         name="searchTerm"
-                        placeholder="Search User or Messages"
+                        placeholder="Search Product Name"
                     />
                     </Header>
                 </Segment>

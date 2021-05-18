@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, Divider, Header, Image, Table} from 'semantic-ui-react';
+import { Container, Divider, Segment, Table} from 'semantic-ui-react';
 
 import './Inventory.css';
+import DisplayTable from '../../AdditionalComponents/DisplayTable/DisplayTable';
 import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
 
 class Inventory extends React.Component{
     state={
-        dataDisplay: [],
         loading: false,
         searchTerm: "",
         searchLoading: false,
@@ -18,7 +18,7 @@ class Inventory extends React.Component{
     async componentDidMount(){
         await fetch('https://fakestoreapi.com/products')
         .then(res=>res.json())
-        .then(json=>this.setState({ dataDisplay: json }))
+        .then(json=>this.setState({ products: json }))
         .catch((err) => console.error(err)) ;
     }
 
@@ -33,14 +33,14 @@ class Inventory extends React.Component{
     };
 
     handleSearchMessages = () => {
-        const channelMessages = [...this.state.products];
+        const searchedProducts = [...this.state.products];
         const regex = new RegExp(this.state.searchTerm, "gi");
-        const searchResults = channelMessages.reduce((acc, message) => {
+        const searchResults = searchedProducts.reduce((acc, product) => {
         if (
-            (message.content && message.content.match(regex)) ||
-            message.user.name.match(regex)
+            (product.content && product.content.match(regex)) ||
+            product.title.match(regex)
         ) {
-            acc.push(message);
+            acc.push(product);
         }
         return acc;
         }, []);
@@ -49,63 +49,48 @@ class Inventory extends React.Component{
         setTimeout(() => this.setState({ searchLoading: false }), 1000);
     };
 
+    displayProducts = prodsToDisplay => 
+        prodsToDisplay.map(prod => (
+            <DisplayTable 
+                prod={prod}
+            />
+        ));
+
     componentWillUnmount() {
-        this.setState({ dataDisplay: []}); //cleaning up all fetch data
+        this.setState({ 
+            products: [],
+            searchTerm: '',
+            searchResults: [],
+            searchLoading: false
+        }); //cleaning up all fetch data
     }
 
     render(){
-        const { searchTerm, searchResults, searchLoading } = this.state;
-
+        const { products, searchTerm, searchResults, searchLoading } = this.state;
         return(
             <Container className="sales-container">
                 <Divider horizontal>Inventory</Divider>
-                <SearchBar
-                    handleSearchChange={this.handleSearchChange}
-                    searchLoading={searchLoading}
-                />
-                <Table basic='very' celled collapsing>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Id</Table.HeaderCell>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Price</Table.HeaderCell>
-                            <Table.HeaderCell>Description</Table.HeaderCell>
-                            <Table.HeaderCell>Category</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-
-                    <Table.Body>
-                        {this.state.dataDisplay.map(datDis => (
-                            <Table.Row key={datDis.id}>
-                                    <Table.Cell>
-                                        {datDis.id}
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        <Header as='h4' image>
-                                            <Image
-                                                className="product-image"
-                                                src={datDis.image}
-                                            />
-                                            <Header.Content>
-                                                {datDis.title}
-                                            </Header.Content>
-                                        </Header>
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        {datDis.price}
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        {datDis.description}
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        {datDis.category}
-                                    </Table.Cell>
+                <Segment>
+                    <SearchBar
+                        handleSearchChange={this.handleSearchChange}
+                        searchLoading={searchLoading}
+                    />
+                    <Table basic='very' celled collapsing>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Id</Table.HeaderCell>
+                                <Table.HeaderCell>Name</Table.HeaderCell>
+                                <Table.HeaderCell>Price</Table.HeaderCell>
+                                <Table.HeaderCell>Description</Table.HeaderCell>
+                                <Table.HeaderCell>Category</Table.HeaderCell>
                             </Table.Row>
-                        ))}
+                        </Table.Header>
 
-                    </Table.Body>
-
-                </Table>
+                        {searchTerm 
+                        ? this.displayProducts(searchResults) 
+                        : this.displayProducts(products)}
+                    </Table>
+                </Segment>
             </Container>
         );
     }
