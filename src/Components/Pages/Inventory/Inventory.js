@@ -13,6 +13,7 @@ class Inventory extends React.Component{
         products: []
     };
 
+
     async componentDidMount(){
         await fetch('https://fakestoreapi.com/products')
         .then(res=>res.json())
@@ -46,6 +47,10 @@ class Inventory extends React.Component{
         this.setState({ searchResults });
         setTimeout(() => this.setState({ searchLoading: false }), 1000);
     };
+
+    componentWillUnmount() {
+        this.setState({ dataDisplay: []}); //cleaning up all fetch data
+    }
 
     render(){
         const { searchTerm, searchResults, searchLoading } = this.state;

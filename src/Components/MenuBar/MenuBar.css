@@ -8,12 +8,12 @@
     -webkit-transform: skew(25deg);
     border: 5px solid #B9E3F3;
 }
-.menu-item-container{
-    border: 5px solid yellow ;
-    background-color: red;
+
+.menu-item-container :hover{
+    background-color: #ADCFE6;
 }
 
-.menu-item{
+.menu-item-text{
     font-size: 16px;
     text-align: center;
     font-weight: 500;
