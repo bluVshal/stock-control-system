@@ -6,7 +6,8 @@ import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
 
 class Inventory extends React.Component{
     state={
-        dataDisplay: []
+        dataDisplay: [],
+        loading: false
     };
 
 
