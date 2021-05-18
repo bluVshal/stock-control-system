@@ -7,7 +7,14 @@ import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
 class Inventory extends React.Component{
     state={
         dataDisplay: [],
+<<<<<<< HEAD
         loading: false
+=======
+        searchTerm: "",
+        searchLoading: false,
+        searchResults: [],
+        products: []
+>>>>>>> 0a9656ccbf49422b44a967d4ec10ea75dd2e8ce1
     };
 
 
@@ -18,15 +25,47 @@ class Inventory extends React.Component{
         .catch((err) => console.error(err)) ;
     }
 
+    handleSearchChange = event => {
+        this.setState(
+        {
+            searchTerm: event.target.value,
+            searchLoading: true
+        },
+        () => this.handleSearchMessages()
+        );
+    };
+
+    handleSearchMessages = () => {
+        const channelMessages = [...this.state.products];
+        const regex = new RegExp(this.state.searchTerm, "gi");
+        const searchResults = channelMessages.reduce((acc, message) => {
+        if (
+            (message.content && message.content.match(regex)) ||
+            message.user.name.match(regex)
+        ) {
+            acc.push(message);
+        }
+        return acc;
+        }, []);
+
+        this.setState({ searchResults });
+        setTimeout(() => this.setState({ searchLoading: false }), 1000);
+    };
+
     componentWillUnmount() {
         this.setState({ dataDisplay: []}); //cleaning up all fetch data
     }
 
     render(){
+        const { searchTerm, searchResults, searchLoading } = this.state;
+
         return(
             <Container className="sales-container">
                 <Divider horizontal>Inventory</Divider>
-                <SearchBar/>
+                <SearchBar
+                    handleSearchChange={this.handleSearchChange}
+                    searchLoading={searchLoading}
+                />
                 <Table basic='very' celled collapsing>
                     <Table.Header>
                         <Table.Row>
@@ -39,33 +78,33 @@ class Inventory extends React.Component{
                     </Table.Header>
 
                     <Table.Body>
-                    {this.state.dataDisplay.map(datDis => (
-                        <Table.Row key={datDis.id}>
-                                <Table.Cell>
-                                    {datDis.id}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <Header as='h4' image>
-                                        <Image
-                                            className="product-image"
-                                            src={datDis.image}
-                                        />
-                                        <Header.Content>
-                                            {datDis.title}
-                                        </Header.Content>
-                                    </Header>
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {datDis.price}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {datDis.description}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {datDis.category}
-                                </Table.Cell>
-                        </Table.Row>
-                    ))}
+                        {this.state.dataDisplay.map(datDis => (
+                            <Table.Row key={datDis.id}>
+                                    <Table.Cell>
+                                        {datDis.id}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <Header as='h4' image>
+                                            <Image
+                                                className="product-image"
+                                                src={datDis.image}
+                                            />
+                                            <Header.Content>
+                                                {datDis.title}
+                                            </Header.Content>
+                                        </Header>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {datDis.price}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {datDis.description}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {datDis.category}
+                                    </Table.Cell>
+                            </Table.Row>
+                        ))}
 
                     </Table.Body>
 
