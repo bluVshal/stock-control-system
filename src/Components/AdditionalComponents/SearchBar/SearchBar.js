@@ -1,22 +1,31 @@
 import React from 'react';
+import { Header, Input, Segment } from 'semantic-ui-react';
 
 import './SearchBar.css';
 
-const SearchBar = () => {
-    return (
-                <div className="search-container">
-                    <span
-                        className="search-span"
-                    >
-                    </span>
-                    <input
-                        className="search-input"
-                        type="text"
-                        onChange={(e) => console.log(e.target.value)}
-                        placeholder='Search'
+class SearchBar extends React.Component {
+    render(){
+        const {
+            handleSearchChange, 
+            searchLoading
+        } = this.props;
+
+
+        return (
+                <Segment clearing>
+                    <Header floated="right">
+                    <Input
+                        onChange={handleSearchChange}
+                        loading={searchLoading}
+                        size="mini"
+                        icon="search" 
+                        name="searchTerm"
+                        placeholder="Search User or Messages"
                     />
-                </div>
-    )
-};
+                    </Header>
+                </Segment>
+        )
+    }
+}
 
 export default SearchBar;
