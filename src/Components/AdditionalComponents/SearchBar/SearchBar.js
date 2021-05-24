@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
                         onChange={handleSearchChange}
                         loading={searchLoading}
                         size="mini"
-                        icon="search" 
+                        icon="search"
                         name="searchTerm"
                         placeholder="Search Product Name"
                     />
