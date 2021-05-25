@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const getTodosAsync = createAsyncThunk(
+export const getStockAsync = createAsyncThunk(
     'todos/getAsyncThunk',
     async () => {
         const resp = await fetch('https://fakestoreapi.com/products');
@@ -25,7 +25,7 @@ export const stockSlice = createSlice({
     reducers: {},
 
     extraReducers: {
-        [getTodosAsync.fulfilled]: (state, action) => {
+        [getStockAsync.fulfilled]: (state, action) => {
             return action.payload.stocks;
         }
     }

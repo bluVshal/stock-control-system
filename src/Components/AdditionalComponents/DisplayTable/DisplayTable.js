@@ -3,7 +3,7 @@ import {Header, Image, Table} from 'semantic-ui-react';
 
 const DisplayTable = (props) => {
     const datDis = props.prod
-    return( 
+    return(
                 <Table.Body>
                         <Table.Row key={datDis.id}>
                                 <Table.Cell>

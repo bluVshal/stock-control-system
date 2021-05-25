@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Container, Divider, Segment, Table} from 'semantic-ui-react';
 
 import './Inventory.css';
 import DisplayTable from '../../AdditionalComponents/DisplayTable/DisplayTable';
 import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
+import { getStockAsync } from '../../../Slice/Slice';
 
 class Inventory extends React.Component{
     state={
@@ -14,13 +16,12 @@ class Inventory extends React.Component{
         products: []
     };
 
-
-    async componentDidMount(){
+   /* async componentDidMount(){
         await fetch('https://fakestoreapi.com/products')
         .then(res=>res.json())
         .then(json=>this.setState({ products: json }))
         .catch((err) => console.error(err)) ;
-    }
+    }*/
 
     handleSearchChange = event => {
         this.setState(
@@ -49,15 +50,15 @@ class Inventory extends React.Component{
         setTimeout(() => this.setState({ searchLoading: false }), 1000);
     };
 
-    displayProducts = prodsToDisplay => 
+    displayProducts = prodsToDisplay =>
         prodsToDisplay.map(prod => (
-            <DisplayTable 
+            <DisplayTable
                 prod={prod}
             />
         ));
 
     componentWillUnmount() {
-        this.setState({ 
+        this.setState({
             products: [],
             searchTerm: '',
             searchResults: [],
@@ -86,8 +87,8 @@ class Inventory extends React.Component{
                             </Table.Row>
                         </Table.Header>
 
-                        {searchTerm 
-                        ? this.displayProducts(searchResults) 
+                        {searchTerm
+                        ? this.displayProducts(searchResults)
                         : this.displayProducts(products)}
                     </Table>
                 </Segment>
@@ -96,4 +97,13 @@ class Inventory extends React.Component{
     }
 }
 
-export default Inventory;
+const mapStateToProps = state => {
+    return { products: state.stocks }
+};
+
+const mapDispatchToProps = dispatch => {
+    console.log(dispatch);
+    return { /*dispatch: getStockAsync */}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
