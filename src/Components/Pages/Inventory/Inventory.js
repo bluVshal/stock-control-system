@@ -5,8 +5,6 @@ import { Container, Divider, Segment, Table} from 'semantic-ui-react';
 import './Inventory.css';
 import DisplayTable from '../../AdditionalComponents/DisplayTable/DisplayTable';
 import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
-import { getStockAsync } from '../../../Slice/Slice';
-
 class Inventory extends React.Component{
     state={
         isLoading: false,
@@ -16,13 +14,6 @@ class Inventory extends React.Component{
         searchResults: [],
         products: []
     };
-
-   /* async componentDidMount(){
-        await fetch('https://fakestoreapi.com/products')
-        .then(res=>res.json())
-        .then(json=>this.setState({ products: json }))
-        .catch((err) => console.error(err)) ;
-    }*/
 
     handleSearchChange = event => {
         this.setState(

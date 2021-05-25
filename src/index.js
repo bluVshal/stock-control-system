@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import StockControlApp from './Components/StockControlApp';
 import 'semantic-ui-css/semantic.min.css'
-import store from './Store/Store';
+import store from './Store';
 
 
 ReactDOM.render(
