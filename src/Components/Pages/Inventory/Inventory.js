@@ -7,6 +7,7 @@ import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
 
 class Inventory extends React.Component{
     state={
+        isLoading: false,
         loading: false,
         searchTerm: "",
         searchLoading: false,
@@ -61,7 +62,8 @@ class Inventory extends React.Component{
             products: [],
             searchTerm: '',
             searchResults: [],
-            searchLoading: false
+            searchLoading: false,
+            isLoading: false
         }); //cleaning up all fetch data
     }
 
