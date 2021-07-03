@@ -1,5 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
+import rootReducer from '../Reducer';
 
-const store = createStore(() => {}, [], applyMiddleware());
+const initialStockState = {
+    stock:{}
+}
+
+const store = createStore(rootReducer, [initialStockState]);
+console.log(store.getState())
 
 export default store;

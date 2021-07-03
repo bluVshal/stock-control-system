@@ -16,8 +16,8 @@ const getStock_reducer = (state=initialStockState, action) => {
     }
 };
 
-const rootReducer = {
+const rootReducer = combineReducers({
     stock: getStock_reducer
-};
+});
 
 export default rootReducer;

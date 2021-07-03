@@ -5,6 +5,7 @@ import { Container, Divider, Segment, Table} from 'semantic-ui-react';
 import './Inventory.css';
 import DisplayTable from '../../AdditionalComponents/DisplayTable/DisplayTable';
 import SearchBar from '../../AdditionalComponents/SearchBar/SearchBar';
+
 class Inventory extends React.Component{
     state={
         isLoading: false,
@@ -90,13 +91,10 @@ class Inventory extends React.Component{
     }
 }
 
-const mapStateToProps = state => {
-    return { products: state.stocks }
-};
 
 const mapDispatchToProps = dispatch => {
     console.log(dispatch);
     return { /*dispatch: getStockAsync */}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
+export default connect(null, {})(Inventory);
